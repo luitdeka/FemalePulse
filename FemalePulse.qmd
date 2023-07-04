@@ -1,0 +1,12 @@
+---
+title: "Female Pulse"
+format: html
+execute: 
+  echo: false
+---
+
+```{r}
+library(primer.data)
+library(tidyverse)
+```
+
