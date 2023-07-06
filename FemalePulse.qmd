@@ -10,6 +10,7 @@ execute:
 #| message: false
 library(primer.data)
 library(tidyverse)
+library(rstanarm)
 ```
 
 ```{r}
@@ -18,6 +19,29 @@ x <- nhanes |>
   drop_na() |>
   filter(gender == "Female")
 ````
+
+
+```{r}
+fit_obj <- stan_glm(data = x, 
+                    formula = pulse ~ 1, 
+                    family = gaussian, 
+                    refresh = 0,
+                    seed = 42)
+fit_obj
+```
+
+
+```{r}
+new_obs <- tibble(.rows = 2) 
+
+posterior_predict(object = fit_obj,
+                  newdata = new_obs) |>
+  mutate(diff = abs(`1` - `2`))
+  
+```
+
+#Question
+What is the difference in pulse rate between two randomly selected female students in this class?
 
 #Wisdom 
 
@@ -43,10 +67,5 @@ Formula: He
 
 #Courage
 
-pulse: 
-
-```{r}
-x |>
-  ggplot(aes())
-```
+Formula: pulse ~ 1
 
