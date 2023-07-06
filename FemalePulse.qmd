@@ -1,12 +1,52 @@
 ---
 title: "Female Pulse"
+author: "Luit Deka"
 format: html
 execute: 
   echo: false
 ---
 
 ```{r}
+#| message: false
 library(primer.data)
 library(tidyverse)
+```
+
+```{r}
+x <- nhanes |>
+  select(pulse, gender) |>
+  drop_na() |>
+  filter(gender == "Female")
+````
+
+#Wisdom 
+
+Predictive or Causal: Predictive
+Unit: Each Student
+Outcome: Pulse
+Covariates: Age, Weight, bmi, heights, sleep
+Preceptor Table: 
+Validity: Not all units may be students. Education is NA. BMI, weight and Height measurements are not clear. BMI and weight may not be accurately measured. Different devices to measure.
+
+Outcome to Preceptor Table answer to question
+
+#Justice
+
+Representativeness or the lack thereof, is the relationship, among the rows in the Population Table, between our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.
+
+Unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. This assumption is only relevant for causal models. We write that a model is “confounded” if this is not true. The easiest way to ensure unconfoundedness is to randonly assign treatment.
+
+Representativeness: Test-take(Stress level)
+Stability: All participants are in the past
+Unconfoundedness: Does not Apply!
+Formula: He
+
+#Courage
+
+pulse: 
+
+```{r}
+x |>
+  ggplot(aes())
 ```
 
